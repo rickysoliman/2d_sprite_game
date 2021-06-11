@@ -5,15 +5,14 @@ import useKeyPress from '../../hooks/use-key-press/use-key-press';
 import useWalk from '../../hooks/use-walk/use-walk';
 
 export default function Player({ skin }) {
-    const { dir, step, walk } = useWalk(3);
+    const { dir, step, walk, position } = useWalk(3);
     const data = {
         h: 32,
         w: 32
     };
 
     useKeyPress(e => {
-        const dir = e.key.replace('Arrow', '').toLowerCase();
-        walk(dir); 
+        walk(e.key.replace('Arrow', '').toLowerCase());
         e.preventDefault();
     });
 
@@ -23,6 +22,7 @@ export default function Player({ skin }) {
             data={data}
             step={step}
             dir={dir}
+            position={position}
         />
     );
 }
